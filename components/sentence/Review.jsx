@@ -1,5 +1,5 @@
 'use client'
-import { BookOpenCheck, X } from 'lucide-react'
+import { BookmarkCheck, BookOpenCheck, CircleCheckBig, HousePlus, X } from 'lucide-react'
 
 
 import Skeleton_box from "@/components/Skeleton/Skeleton"
@@ -9,40 +9,40 @@ import { Edit, Star, Trash } from "lucide-react"
 
 import { useEffect, useState } from "react"
 
-import Modal       from "@/components/home/Modal"
-import ModalDelete from "@/components/home/ModalDelete"
-import { usePutProperty } from '@/hooks/CRUD_home'
+import Modal       from "@/components/sentence/Modal"
+import ModalDelete from "@/components/sentence/ModalDelete"
+import { usePutProperty } from '@/hooks/CRUD_sentence'
 import NotFound from '../NotFound'
 
-const Finish = () => {
+const Review = () => {
 
     const [Word , setWord ] = useState(null)
 
     //! define the fetcher
     const fetcher = (url) => fetch(url).then(res => res.json())
-    const {data , error } = useSWR('/api/word' , fetcher)
+    const {data , error } = useSWR('/api/sentence' , fetcher)
     const [filter , setfilter] = useState([])
   
   useEffect(_=> {
     if(data){
-      setfilter(data?.data?.filter(e => e.type == 'finish'))
+      setfilter(data?.data?.filter(e => e.type == 'review'))
     }
   }, [data])
 
   
   
     //! Edit & Delete
-    const handleDelete = ()=>{  document.getElementById('home-delete').click()       }
-    const handleEdit = ()=>{ document.getElementById('home-edit').click()   }
+    const handleDelete = ()=>{  document.getElementById('sentence-delete').click()       }
+    const handleEdit = ()=>{ document.getElementById('sentence-edit').click()   }
 
     const [handleSubmit] = usePutProperty()
 
 
   return (
-    <div className='review-component finish-component'>
+    <div className='review-component review-component-diff'>
         <div className="head">
-            <h2> Finish Words </h2>
-            <X onClick={_=> document.querySelector(".review").classList.remove("show2")} />
+            <h2> Review Sentences </h2>
+            <X onClick={_=> document.querySelector(".review").classList.remove("show")} />
         </div>
 
         <Accordion type="single" collapsible className="w-full accordion">
@@ -57,15 +57,16 @@ const Finish = () => {
                     <div className="action">
                       <Trash onClick={_=> {handleDelete() ; setWord(e) }} /> 
                       <Edit onClick={_=> {handleEdit() ; setWord(e) }}/> 
-                      <BookOpenCheck onClick={_ => { handleSubmit(`/api/word?id=${e._id}` , {type:""}) }} />
+                      <HousePlus onClick={_ => { handleSubmit(`/api/sentence?id=${e._id}` , {type:""}) }} />
+                      <CircleCheckBig onClick={_ => { handleSubmit(`/api/sentence?id=${e._id}` , {type:"finish"}) }} />
                     </div> 
 
-                    <AccordionTrigger> {e.title_en} </AccordionTrigger>
-                    <AccordionContent>  {e.title_ar}  </AccordionContent>
+                    <AccordionTrigger> sentence {i+1}</AccordionTrigger>
+                    <AccordionContent>  {e.title_en}  </AccordionContent>
                     
                 </AccordionItem> ))
 
-            : <NotFound msg="there are no words yet" />
+            : <NotFound msg="there are no sentences yet" />
           :  <div className="container skeleton0"> <Skeleton_box /> </div>
       }
     </div>
@@ -80,4 +81,4 @@ const Finish = () => {
   )
 }
 
-export default Finish
+export default Review

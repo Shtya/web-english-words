@@ -321,20 +321,21 @@ nav {
   top: 0;
   .fixed{position: fixed;}
   .container {
-    height: 120px;
+    height: 100px;
     border-radius: 0px 0px 8px 8px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     transition: .3s;
     &.shrink{
-      height: 90px;
+      height: 70px;
       .span{font-size: 14px;}
       .open-close {
         height: 50px;
         width: 50px;
       }
     }
+    
 
     .inner{
       display: flex;
@@ -345,7 +346,7 @@ nav {
     .main-ul {
       display: flex;
       align-items: center;
-      gap: 40px ;
+      gap: 20px ;
       >li a{
         align-items: center;
         display: flex;
@@ -358,7 +359,7 @@ nav {
       }
     }
 
-    a {
+    a , .logo span {
       font-size: 18px;
       font-weight: 600;
       line-height: 33.73px;
@@ -366,7 +367,7 @@ nav {
       color: var(--Nav-links);
       transition: 0.3s;
       text-transform: capitalize;
-      font-family: sans-serif;
+      font-family: cursive;
       &.active , &:hover {
         color: var(--Primary);
       }
@@ -623,11 +624,9 @@ nav {
   }
 }
 .textarea{
-  height: 200px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-bottom: 40px;
   label{
     font-size: 20px;
     text-transform: uppercase;
@@ -635,13 +634,14 @@ nav {
   textarea{
     min-height: 150px;
     box-shadow: var(--box-shadow);
-    border: 1px solid #8885;
+    border: 1px solid rgba(136, 136, 136, 0.3333333333);
     border-radius: 10px;
     resize: none;
     color: #333;
     text-transform: capitalize;
     padding: 10px;
-    font-size: 22px;
+    font-size: 20px;
+    line-height: 1.2;
     &:focus{
       outline: 1px solid var(--Primary);
     }
@@ -792,6 +792,7 @@ nav {
   align-items: center;
   margin-top: 50px;
 }
+.lt-toolbar__wrapper{left: 30px !important;}
 
 #buu , #modal-delete-btn{
   display: none !important;
@@ -869,7 +870,7 @@ nav {
     }
     .action{
       width: 150px;
-      margin: 10px 30px -10px auto;
+      margin: 10px 25px -10px auto;
       display: flex;
       align-items: center;
       justify-content: flex-end;
@@ -891,10 +892,11 @@ nav {
           justify-content: center;
           color: var(--danger);
           transform-origin: center;
+          margin-right: -8px;
           &:nth-of-type(2){
             color: var(--Primary);
           }
-          &:nth-of-type(3){
+          &:nth-of-type(3) , &:nth-of-type(4){
             color: var(--Secondary);
             polygon{transition: .3s;}
             &:hover polygon{
@@ -911,6 +913,9 @@ nav {
     h3 button {
       font-size: 18px;
       margin-top: -35px;
+      @media (max-width:500px) {
+        margin-top: 0;
+      }
     }
   
     .pb-4.pt-0{
@@ -920,11 +925,32 @@ nav {
   }
 }
 
-.sentences{
+.sentence{
   .textarea{
     width: 100%;
     margin: 0 auto 50px;
-    
+    position: relative;
+    svg{   
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      width: 40px;
+      height: 40px;
+      padding: 7px;
+      color: var(--Primary);
+      cursor: pointer;
+      background: #f1f1f1;
+      border-radius: 10px 0 10px 0;
+      transition: .3s;
+      &:hover{
+        bottom: 0;
+        right: 0;
+        width: 38px;
+        height: 38px;
+        padding: 5px ;
+        box-shadow: var(--box-shadow);
+      }
+  }
     .btn1{
       border-radius: 0 10px 0 10px ;
       width: 100px;
@@ -1007,7 +1033,8 @@ nav {
   
 
   .review-component{
-    width: 500px;
+    max-width: 600px;
+    width: 100%;
     height: 100vh;
     background-color: #333;
     position: fixed;
@@ -1032,15 +1059,17 @@ nav {
       align-items: center;
       padding: 20px;
       justify-content: space-between;
+      margin-bottom: 30px;
       h2{
         font-size: 22px;
-        color: var(--Primary);
+        color: #fff;
+        text-transform: uppercase;
       }
       svg{
-        color: crimson;
+        color: white;
         transition: .4s;
         cursor: pointer;
-        &:hover{rotate: 45deg;}
+        &:hover{rotate: 90deg; color: crimson;}
       }
     }
   }
@@ -1057,16 +1086,16 @@ nav {
 
 .ten-words{
   background: var(--Primary);
-    color: white;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 40px;
-    margin: 40px 0 10px;
-    font-size: 20px;
-    text-transform: capitalize;
-    cursor: pointer;
+  color: var(--border-static);
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+  margin: 5px 0 5px;
+  font-size: 20px;
+  text-transform: capitalize;
+  cursor: pointer;
     span:nth-of-type(2){
       font-size: 14px;
     }
@@ -1080,12 +1109,61 @@ nav {
         align-items: center;
         justify-content: center;
         margin: 0 5px 0 -5px;
-        border-radius: 10px;
         font-size: 16px;
         color: var(--Primary);
         font-weight: 700;
       }
     }
+}
+
+.collapse1{
+  display: flex; justify-content: flex-end; gap: 5px;
+  margin-bottom: 20px;
+  position: sticky;
+  top: 80px;
+  z-index: 1000;
+  .label{
+    position: relative;
+    &:hover h4 {opacity: 1;}
+    h4{
+      position: absolute;
+      bottom: 110%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(204, 204, 204, 0.5333333333);
+      padding: 5px;
+      font-size: 10px !important;
+      scale: .9;
+      transform-origin: left;
+      font-family: system-ui;
+      opacity: 0;
+      pointer-events: none;
+      transition: .2s;
+      transition-delay: .3s;
+    }
+  }
+  svg{
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    padding: 9px;
+    box-shadow: var(--box-shadow) , 0 0 10px #ccc3;
+    background-color: white;
+    color: var(--Primary);
+    transform-origin: center;
+    transition: .3s;
+    &:hover{
+      scale: 1.03;
+    }
+  }
+}
+
+
+.hidden1{
+    transform: scaleY(0);
+    height: 0;
+    padding: 0 !important;
+    overflow: hidden;
 }
 
 

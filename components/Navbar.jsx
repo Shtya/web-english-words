@@ -40,12 +40,6 @@ const Navbar = () => {
 
   } ,[])
 
-  const router = useRouter()
-  const handleWords = async()=>{
-    await router.push("/")
-    if(document.getElementById("home-add"))
-      document.getElementById("home-add").click()
-  }
 
   return (
     <nav>
@@ -56,8 +50,8 @@ const Navbar = () => {
         <div className="inner" ref={ul_ref} >
 
             <ul className='main-ul'>
-            <li onClick={handleWords} > <Link className={pathname == '/' ? "active" : ""} href='/'> Word <Plus /> </Link> </li>
-            <li > <Link className={pathname == '/sentences' ? "active" : ""} href='/sentences'> sentences <Plus /> </Link> </li>
+            <li > <Link className={pathname == '/' ? "active" : ""} href='/'> Word </Link> </li>
+            <li > <Link className={pathname == '/sentences' ? "active" : ""} href='/sentences'> sentences </Link> </li>
 
               {/* <li className='dropdown'> 
                   <Link className={pathname == "/sentences" ? "active" : ""} href='/sentences'> sentences </Link> 

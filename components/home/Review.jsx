@@ -1,5 +1,5 @@
 'use client'
-import { BookmarkCheck, X } from 'lucide-react'
+import { BookmarkCheck, BookOpenCheck, CircleCheckBig, HousePlus, X } from 'lucide-react'
 
 
 import Skeleton_box from "@/components/Skeleton/Skeleton"
@@ -57,8 +57,8 @@ const Review = () => {
                     <div className="action">
                       <Trash onClick={_=> {handleDelete() ; setWord(e) }} /> 
                       <Edit onClick={_=> {handleEdit() ; setWord(e) }}/> 
-                      <Star onClick={_ => { handleSubmit(`/api/word?id=${e._id}` , {type:""}) }} />
-                      <BookmarkCheck onClick={_ => { handleSubmit(`/api/word?id=${e._id}` , {type:"finish"}) }} />
+                      <HousePlus onClick={_ => { handleSubmit(`/api/word?id=${e._id}` , {type:""}) }} />
+                      <CircleCheckBig onClick={_ => { handleSubmit(`/api/word?id=${e._id}` , {type:"finish"}) }} />
                     </div> 
 
                     <AccordionTrigger> {e.title_en} </AccordionTrigger>

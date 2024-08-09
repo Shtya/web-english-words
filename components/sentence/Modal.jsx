@@ -1,5 +1,5 @@
 'use client'
-import { usePut } from "@/hooks/CRUD_sentences";
+import { usePut } from "@/hooks/CRUD_sentence";
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
@@ -11,7 +11,7 @@ export default function Modal ({data , btn_name}) {
     const [body , setBody] = useState({ title_en:"" })
 
     //! post data in inputs 
-    useEffect(_=> setBody({title_en : data?.title_en }) ,[data])
+    useEffect(_=> setBody({ title_en : data?.title_en }) ,[data])
     
     //! onChange
     const handleChange = (e)=>{
@@ -33,7 +33,7 @@ export default function Modal ({data , btn_name}) {
             <DialogHeader> <DialogTitle className="title" >Edit the sentence</DialogTitle>  </DialogHeader>
             <form onSubmit={e => e.preventDefault()}>
                 <textarea  name="title_en" placeholder="the word in english"  value={body.title_en} onChange={handleChange} />
-                <button className="btn1" onClick={handleSubmit} > Edit </button>
+                <button className="btn1" onClick={handleSubmit} > Send </button>
             </form>
         </DialogContent>
     </Dialog>

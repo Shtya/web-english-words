@@ -1,6 +1,6 @@
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger,} from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
-import { useDelete } from "@/hooks/CRUD_sentences"
+import { useDelete } from "@/hooks/CRUD_sentence"
 
 export default function ModalDelete({data , btn_name }) {
 
@@ -14,7 +14,7 @@ export default function ModalDelete({data , btn_name }) {
         <AlertDialogContent>
 
             <AlertDialogHeader>
-                <AlertDialogTitle>Are you sure to delete this sentence?</AlertDialogTitle>
+                <AlertDialogTitle>Are you sure to delete this word?</AlertDialogTitle>
                 <AlertDialogDescription>  </AlertDialogDescription>
             </AlertDialogHeader>
 
