@@ -16,7 +16,7 @@ export default function ModalAdd({btn_name}) {
     }
 
     //! Submit
-    const [handleSubmit] = usePost('/api/word' , body , setBody , btn_name )
+    const [handleSubmit] = usePost('/api/word' , {type:"" , ...body} , setBody , btn_name )
 
   return (
     <Dialog  >
